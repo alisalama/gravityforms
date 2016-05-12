@@ -42,11 +42,18 @@ class GFFormsModel {
 	public static function get_form_table_name() {
 		global $wpdb;
 
+		// Added by Ali Salama - 04/05/2016 -Necessary edit to core plugin file to allow secondary sites to access main form tables.
+		// return $wpdb->base_prefix . 'rg_form';
+		return apply_filters('bluebox_alter_form_table', null);
+
 		return $wpdb->prefix . 'rg_form';
 	}
 
 	public static function get_meta_table_name() {
 		global $wpdb;
+
+		// return $wpdb->base_prefix . 'rg_form_meta';
+		return apply_filters('bluebox_alter_form_meta_table', null);
 
 		return $wpdb->prefix . 'rg_form_meta';
 	}
@@ -3430,8 +3437,8 @@ class GFFormsModel {
 			self::get_lead_details_table_name(),
 			self::get_lead_table_name(),
 			self::get_form_view_table_name(),
-			self::get_meta_table_name(),
-			self::get_form_table_name(),
+			// self::get_meta_table_name(),
+			// self::get_form_table_name(),
 			self::get_lead_meta_table_name(),
 			self::get_incomplete_submissions_table_name(),
 		);
